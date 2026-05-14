@@ -1,6 +1,6 @@
 # APPNAME
 
-Template for new FreeAppStore apps. Replace `APPNAME` with your app id.
+A free app on FreeAppStore.
 
 - Subdomain: `APPNAME.freeappstore.online`
 - Dev: `pnpm install && pnpm dev`
