@@ -1,11 +1,17 @@
 # APPNAME
 
-## Platform: FreeAppStore (Connected App)
-- Hosted on Cloudflare Pages (static SPA only)
-- Backend: Firebase (shared with Pro version on ProAppStore)
-- ONE environment only (production). No dev/staging. Fix forward, no rollbacks.
-- Push to `main` auto-deploys to production via CF Pages
-- Domain: APPNAME.freeappstore.online
+Template for new FreeAppStore apps. Replace `APPNAME` with your app id.
+
+- Subdomain: `APPNAME.freeappstore.online`
+- Dev: `pnpm install && pnpm dev`
+- Build: `pnpm build`
+- Deploy: `git push origin main` (auto-deploys via Cloudflare Pages)
+
+Free, MIT-licensed, no tracking. For platform conventions, read
+https://raw.githubusercontent.com/freeappstore-online/freeappstore/main/SKILLS.md
+before writing or changing anything.
+
+---
 
 ## Architecture
 This is a CONNECTED app — the free and pro versions share the same Firebase backend.
@@ -13,35 +19,3 @@ This is a CONNECTED app — the free and pro versions share the same Firebase ba
 - Pro version: full features (create, collaborate, AI, cloud sync)
 - Feature gating: Firestore security rules enforce access based on user plan (free/pro)
 - Firebase config: set via VITE_FIREBASE_* env vars (or .env.production file)
-
-## Tech Stack
-- TypeScript, React 19, Vite 6, Tailwind CSS 4.1, pnpm
-- Firebase (Auth, Firestore, Storage)
-- react-router-dom for routing
-
-## Brand Guidelines
-- Fonts: Manrope (body) + Fraunces (display)
-- Follow CSS variables in index.css for colors
-- Sidebar on desktop (17rem), bottom dock on mobile
-- Dark mode via prefers-color-scheme (no toggle)
-
-## Development
-- `pnpm dev` — start dev server (works without Firebase in mock mode)
-- `pnpm build` — production build
-- `pnpm typecheck` — verify types
-- Copy .env.example to .env.production and fill Firebase values for prod builds
-
-## Rules
-- No analytics, no tracking beyond Firebase Auth
-- Free features must work without Pro subscription
-- App must gracefully handle no-auth state (browsing without sign-in)
-- Include "Part of FreeAppStore" link
-- MIT license
-
-## Platform Docs & Publishing
-- **Full AI guide:** https://raw.githubusercontent.com/freeappstore-online/ops/main/SKILLS.md
-- **Store registry:** ~/dev/fas/infra/freeappstore/registry.json (add app here to list on store)
-- **Store site:** ~/dev/fas/infra/freeappstore/ (auto-deploys on push)
-- **Publish script:** ~/dev/fas/infra/freeappstore/scripts/publish.sh
-- **Deploy:** Push to main auto-deploys via GitHub Actions. No manual steps needed.
-- **DNS/domains:** See SKILLS.md for CF API commands
