@@ -5,13 +5,13 @@ name: Deploy to R2
 # Worker on *.freeappstore.online reads this prefix to serve the app — no
 # per-app CF Pages project needed.
 #
-# Org-level secrets required (set once on the freeappstore-online GitHub org):
-#   - R2_ACCESS_KEY_ID
-#   - R2_SECRET_ACCESS_KEY
-#   - R2_ACCOUNT_ID
-#
-# Generate the access key + secret from the CF dashboard under R2 → Manage
-# R2 API Tokens; scope to "Object Read & Write" on the fas-apps bucket only.
+# Uses Cloudflare's native R2 API via wrangler (not the S3-compatible API).
+# Org-level secret required (set once on the freeappstore-online GitHub org):
+#   - CLOUDFLARE_API_TOKEN — needs Account: Workers R2 Storage: Edit
+#     and Account: Workers Scripts: Edit (so wrangler can authenticate +
+#     write objects). Generate from the CF dashboard's
+#     "Account API Tokens" page, NOT the R2 dashboard (those are S3-style
+#     keys for the S3 protocol, which we don't use).
 
 on:
   push:
@@ -46,25 +46,39 @@ jobs:
       - name: Build
         run: pnpm build
 
-      # Guard against empty/missing dist: aws s3 sync from an empty directory
-      # with --delete would wipe the live app. Failing loudly here is safer.
+      # Guard against empty/missing dist. A silent empty build would
+      # otherwise produce an empty R2 prefix and an apparently-broken app.
       - name: Verify build output
         run: |
           test -d ./web/dist || { echo "::error::No build output at web/dist"; exit 1; }
           test -n "$(ls -A ./web/dist)" || { echo "::error::web/dist is empty"; exit 1; }
 
-      # R2 speaks the S3 API. The aws CLI is preinstalled on ubuntu-latest;
-      # --delete prunes assets removed in this build so abandoned files don't
-      # accumulate over the app's lifetime.
-      - name: Upload to R2
+      # Parallel uploads to R2 via `wrangler r2 object put`. Each invocation
+      # spawns a Node process (~500ms startup), so we run 12 in parallel via
+      # xargs -P to amortize. A 5-30 file app finishes in seconds; a multi-
+      # thousand file SSG (e.g. language) takes a few minutes. No S3 protocol,
+      # no aws CLI — pure CF tooling.
+      - name: Upload to R2 (via wrangler)
         env:
-          AWS_ACCESS_KEY_ID: ${{ secrets.R2_ACCESS_KEY_ID }}
-          AWS_SECRET_ACCESS_KEY: ${{ secrets.R2_SECRET_ACCESS_KEY }}
-          AWS_DEFAULT_REGION: auto
-          R2_ACCOUNT_ID: ${{ secrets.R2_ACCOUNT_ID }}
+          CLOUDFLARE_API_TOKEN: ${{ secrets.CLOUDFLARE_API_TOKEN }}
         run: |
-          aws s3 sync ./web/dist "s3://fas-apps/apps/${GITHUB_REPOSITORY##*/}/" \
-            --endpoint-url "https://$R2_ACCOUNT_ID.r2.cloudflarestorage.com" \
-            --delete \
-            --no-progress
-          echo "Deployed apps/${GITHUB_REPOSITORY##*/} from ${GITHUB_SHA::7}"
+          REPO="${GITHUB_REPOSITORY##*/}"
+          DIST="./web/dist"
+          BUCKET="fas-apps"
+          PREFIX="apps/${REPO}"
+          COUNT=$(find "$DIST" -type f | wc -l | tr -d ' ')
+          echo "Uploading $COUNT files to r2://$BUCKET/$PREFIX/"
+
+          # `--remote` writes to production R2 (the wrangler default is the
+          # local miniflare). `--content-type` is set explicitly because
+          # wrangler defaults to application/octet-stream, which combined
+          # with X-Content-Type-Options: nosniff would prompt download
+          # instead of rendering HTML/JS/CSS.
+          find "$DIST" -type f -print0 | xargs -0 -P 12 -I {} bash -c '
+            f="{}"
+            rel="${f#'"$DIST"'/}"
+            mime=$(file -b --mime-type "$f")
+            npx --yes wrangler@4 r2 object put "'"$BUCKET/$PREFIX"'/${rel}" \
+              --file "$f" --remote --content-type "$mime" >/dev/null
+          '
+          echo "Deployed $PREFIX from ${GITHUB_SHA::7}"
