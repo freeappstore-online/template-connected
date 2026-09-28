@@ -2,7 +2,7 @@
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover, user-scalable=no" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover" />
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent" />
@@ -10,7 +10,11 @@
     <meta name="darkreader-lock" />
     <link rel="manifest" href="/manifest.json" />
     <script>
-      if (matchMedia('(prefers-color-scheme: dark)').matches) {
+      // Set the theme before first paint. The user's choice from the Shell's
+      // theme toggle wins over the system.
+      var t = null;
+      try { t = localStorage.getItem('stores-theme'); } catch (e) {}
+      if (t === 'dark' || (t !== 'light' && matchMedia('(prefers-color-scheme: dark)').matches)) {
         document.documentElement.dataset.theme = 'dark';
       }
     </script>

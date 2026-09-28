@@ -12,6 +12,16 @@ export default defineConfig({
       workbox: {
         globPatterns: ['**/*.{js,css,html,png,svg,ico,woff2,wasm,json}'],
         maximumFileSizeToCacheInBytes: 10 * 1024 * 1024,
+        // Force the new SW to activate immediately instead of waiting for
+        // all tabs to close. Combined with registerType: 'autoUpdate' this
+        // ensures users always get the latest deploy without a manual refresh.
+        skipWaiting: true,
+        clientsClaim: true,
+        // Serve index.html for all navigation requests (SPA fallback).
+        // Without this, opening from iPhone home screen shows blank —
+        // the SW intercepts the navigation but has no response for it.
+        navigateFallback: '/index.html',
+        navigateFallbackDenylist: [/^\/api/, /^\/v1/],
         runtimeCaching: [
           {
             urlPattern: /^https:\/\/fonts\.googleapis\.com\/.*/i,
@@ -33,20 +43,9 @@ export default defineConfig({
           },
         ],
       },
-      manifest: {
-        name: 'APPNAME',
-        short_name: 'APPNAME',
-        description: 'Free APPNAME app — part of FreeAppStore',
-        start_url: '/',
-        display: 'standalone',
-        background_color: '#ffffff',
-        theme_color: '#111111',
-        orientation: 'any',
-        icons: [
-          { src: '/icon-192.png', sizes: '192x192', type: 'image/png', purpose: 'any maskable' },
-          { src: '/icon-512.png', sizes: '512x512', type: 'image/png', purpose: 'any maskable' },
-        ],
-      },
+      // Manifest is defined in web/public/manifest.json (single source of truth).
+      // VitePWA reads it from there automatically when manifest is false.
+      manifest: false,
     }),
   ],
   server: { host: true },
