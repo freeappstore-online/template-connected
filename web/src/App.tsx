@@ -64,24 +64,24 @@ function Home() {
   return (
     <>
       <PageHeader title="APPNAME" description={`Signed in as ${user?.login ?? ''}. Edit web/src/App.tsx to start building.`} />
-      <label className="block text-sm font-semibold text-[var(--ink)]" htmlFor="note">
+      <label className="block text-sm font-semibold text-ink" htmlFor="note">
         Your note (saved to your account)
       </label>
       <textarea
         id="note"
-        className="mt-2 w-full rounded-xl border border-[var(--line)] bg-[var(--panel)] p-3 text-[var(--ink)]"
+        className="mt-2 w-full rounded-xl border border-line bg-panel p-3 text-ink"
         rows={4}
         value={note}
         onChange={(e) => setNote(e.target.value)}
       />
       <button
         type="button"
-        className="mt-3 rounded-xl bg-[var(--accent)] px-4 py-2 font-semibold text-white"
+        className="mt-3 rounded-xl bg-accent px-4 py-2 font-semibold text-white"
         onClick={save}
       >
         Save
       </button>
-      <p className="mt-8 text-sm text-[var(--muted)]">
+      <p className="mt-8 text-sm text-muted">
         APPNAME is a free app on <a href="https://freeappstore.online" className="underline">FreeAppStore</a>.
       </p>
     </>
