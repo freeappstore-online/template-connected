@@ -150,7 +150,7 @@
 html {
   min-height: 100%;
   -webkit-text-size-adjust: 100%;
-  touch-action: manipulation;
+  touch-action: pan-x pan-y;
 }
 
 body {
@@ -254,3 +254,15 @@ a:focus-visible {
 :root[data-text='sm'] { font-size: 87.5%; }
 
 } /* end @layer base */
+
+/* Mobile app frame: keep browser zoom and page overflow out of app gestures. */
+@layer base {
+  html,
+  body,
+  #root {
+    min-width: 0;
+    max-width: 100%;
+    overflow-x: clip;
+    touch-action: pan-x pan-y;
+  }
+}
