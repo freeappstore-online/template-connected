@@ -1,5 +1,7 @@
 # template-connected
 
+The CLI and builder generate connected apps from the platform's shared starter foundation. This repository is a release mirror; its `APPNAME`, `APPNAME_JS`, and `APPNAME_TEXT` tokens are source placeholders and are not meant to be replaced manually. Use `fas init <app-id> --template connected` to create an app with a validated ID and safely escaped display name.
+
 ## Mobile viewport defaults
 
 The app starts at device width with page zoom restricted by the viewport meta tag
