@@ -1,7 +1,7 @@
 import { useEffect, useState } from 'react'
 import { initApp } from '@freeappstore/sdk'
 import { useAuth } from '@freeappstore/sdk/hooks'
-import { type NavItem, PageHeader, ProfilePage, Shell, useToast } from '@freeappstore/sdk/ui'
+import { type NavItem, PageHeader, Shell, useToast } from '@freeappstore/sdk/ui'
 
 const fas = initApp({ appId: 'APPNAME' })
 
@@ -10,11 +10,11 @@ const fas = initApp({ appId: 'APPNAME' })
 // `title` becomes the browser tab title on that route.
 const NAV: NavItem[] = [
   { label: 'Home', href: '/', title: 'APPNAME' },
-  { label: 'Account', href: '/account', title: 'Account — APPNAME' },
+  { label: 'Profile', href: '/profile', title: 'Profile — APPNAME' },
 ]
 
 export default function App() {
-  const [path, setPath] = useState(() => window.location.pathname)
+  const [, setPath] = useState(() => window.location.pathname)
 
   // Keep the screen in step with the browser's back and forward buttons.
   useEffect(() => {
@@ -32,11 +32,12 @@ export default function App() {
 
   // requireAuth: this app works with the signed-in user's data, so the Shell
   // shows a sign-in screen until the visitor signs in (one account for every
-  // FreeAppStore app). The topbar's profile menu handles sign-out.
+  // FreeAppStore app). The avatar opens the SDK's /profile page for sign-in
+  // choices and account management, including sign-out.
   return (
     <Shell app={fas} appName="APPNAME" nav={NAV} onNavigate={navigate} requireAuth>
       <div className="mx-auto w-full max-w-3xl p-4 sm:p-8">
-        {path === '/account' ? <Account /> : <Home />}
+        <Home />
       </div>
     </Shell>
   )
@@ -84,15 +85,6 @@ function Home() {
       <p className="mt-8 text-sm text-muted">
         APPNAME is a free app on <a href="https://freeappstore.online" className="underline">FreeAppStore</a>.
       </p>
-    </>
-  )
-}
-
-function Account() {
-  return (
-    <>
-      <PageHeader title="Account" />
-      <ProfilePage app={fas} />
     </>
   )
 }
