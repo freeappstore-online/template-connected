@@ -17,6 +17,14 @@ package prerequisites before applying; root recipe imports need a root SDK depen
 Keep edited capability files and review conflicts rather than overwriting them.
 Keep one PWA controller and register busy guards for unsaved work and capture.
 
+Before reporting completion, typecheck and build; exercise a real user flow,
+including sequential keyboard typing (not only programmatic fill), associated
+labels, save + reload, validation failures, and avatar/Profile return navigation.
+Check the browser favicon separately from the PWA manifest/install icon.
+Use available browser tooling; state explicitly when runtime checks were not run.
+Practical review guide:
+https://github.com/freeappstore-online/platform/blob/main/docs/app-verification.md
+
 Canonical source and guidance:
 https://github.com/freeappstore-online/platform/blob/main/docs/composable-starter-contract.md
 https://github.com/freeappstore-online/platform/blob/main/docs/starter-release.md
