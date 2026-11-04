@@ -19,4 +19,5 @@ Keep one PWA controller and register busy guards for unsaved work and capture.
 
 Canonical source and guidance:
 https://github.com/freeappstore-online/platform/blob/main/docs/composable-starter-contract.md
+https://github.com/freeappstore-online/platform/blob/main/docs/starter-release.md
 https://github.com/freeappstore-online/platform/blob/main/CONTRIBUTING.md#updating-the-external-app-starter-repositories
