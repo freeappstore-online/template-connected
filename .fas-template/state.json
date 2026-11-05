@@ -1,7 +1,7 @@
 {
   "cliVersion": "0.4.76",
-  "sdkVersion": "0.16.39",
-  "sourceSha": "ec51ae4b865fe6ec1b3f375b61f12c5343758cce",
+  "sdkVersion": "0.16.41",
+  "sourceSha": "50062f51aec0a6563ff0a7bde004ae39ff5063e8",
   "preset": "connected",
   "managedPaths": [
     "pnpm-workspace.yaml",
