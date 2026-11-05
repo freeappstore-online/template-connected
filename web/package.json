@@ -3,10 +3,11 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "dev": "vite",
-    "build": "vite build",
+    "dev": "pnpm generate:icons && vite",
+    "build": "pnpm generate:icons && vite build",
     "preview": "vite preview",
-    "test": "vitest run"
+    "test": "vitest run",
+    "generate:icons": "pwa-assets-generator --manifest=false"
   },
   "dependencies": {
     "react": "^19",
@@ -24,6 +25,7 @@
     "happy-dom": "^20.14.5",
     "vitest": "^4.1.11",
     "vite": "^6",
-    "vite-plugin-pwa": "^1.0"
+    "vite-plugin-pwa": "^1.0",
+    "@vite-pwa/assets-generator": "1.0.4"
   }
 }

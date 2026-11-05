@@ -21,9 +21,13 @@ Before reporting completion, typecheck and build; exercise a real user flow,
 including sequential keyboard typing (not only programmatic fill), associated
 labels, save + reload, validation failures, and avatar/Profile return navigation.
 Check the browser favicon separately from the PWA manifest/install icon.
+Dev/build generates raster icons from the app-owned SVG using web/pwa-assets.config.ts.
+Keep custom artwork, HTML and manifest paths consistent; prebuilt custom icons are supported.
 Use available browser tooling; state explicitly when runtime checks were not run.
 Practical review guide:
 https://github.com/freeappstore-online/platform/blob/main/docs/app-verification.md
+Optional editable form/dialog example:
+https://github.com/freeappstore-online/platform/blob/main/docs/ui.md#editable-forms
 
 Canonical source and guidance:
 https://github.com/freeappstore-online/platform/blob/main/docs/composable-starter-contract.md
