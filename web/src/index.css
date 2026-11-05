@@ -52,6 +52,7 @@
   }
 }
 
+@layer base {
 :root {
   --paper: #ffffff;
   --ink: #1a1a1a;
@@ -134,3 +135,5 @@ h3 {
 html { overflow-wrap: anywhere; }
 body { padding: env(safe-area-inset-top) env(safe-area-inset-right) env(safe-area-inset-bottom) env(safe-area-inset-left); }
 img, video, canvas { max-width: 100%; }
+
+}

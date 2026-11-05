@@ -23,6 +23,9 @@ labels, save + reload, validation failures, and avatar/Profile return navigation
 Check the browser favicon separately from the PWA manifest/install icon.
 Dev/build generates raster icons from the app-owned SVG using web/pwa-assets.config.ts.
 Keep custom artwork, HTML and manifest paths consistent; prebuilt custom icons are supported.
+Remove the generated-asset .gitignore entries if adopting prebuilt icons at those paths.
+Profile is a separate route: keep drafts/reading position in app-owned route state and
+pause playback or capture in effect cleanup. A PWA busy guard only guards updates.
 Use available browser tooling; state explicitly when runtime checks were not run.
 Practical review guide:
 https://github.com/freeappstore-online/platform/blob/main/docs/app-verification.md
