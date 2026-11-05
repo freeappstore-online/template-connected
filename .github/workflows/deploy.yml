@@ -49,6 +49,8 @@ jobs:
         run: npx --yes @freeappstore/cli@0.4.67 build-target --app-id "${GITHUB_REPOSITORY##*/}" --github-output
       - name: Typecheck (when configured)
         run: pnpm run --if-present typecheck
+      - name: Tests (when configured)
+        run: pnpm run --if-present test
       - name: Build
         env:
           BUILD_COMMAND: ${{ steps.target.outputs.build-command }}

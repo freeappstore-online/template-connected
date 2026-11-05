@@ -1,7 +1,7 @@
 {
-  "cliVersion": "0.4.74",
+  "cliVersion": "0.4.75",
   "sdkVersion": "0.16.38",
-  "sourceSha": "043fee57cce1e8bc5ff2e3f014c5419f0a3a9388",
+  "sourceSha": "f4247eb7facf74dd5055e86a1cecb57a01cd77f7",
   "preset": "connected",
   "managedPaths": [
     "pnpm-workspace.yaml",
@@ -58,7 +58,7 @@
     "web/fas-pwa-config.ts": "4ef48e13f7ac7403d29ad08e5edc1868f1a8c2e4af083750eae0a07a705ef493",
     "fas-capabilities/pwa.md": "cd5ae3917808f6efec5813279a4a44dfd32d4daaf8cd81ab44ae8e51a3f00c51",
     "fas-capabilities/cloud-data.md": "1c4026e29ff6fc51d60aff1e3e4a247bb4bdc06ade46fff416d88e30466f005a",
-    ".github/workflows/deploy.yml": "f04468eb543c5351c99bf011a0d675039dcb95c8c0cf5b9d1c48f9bbad98ebda",
+    ".github/workflows/deploy.yml": "c715547e671e7f30e35959f4d2251d0b8b9368cda9ea0c7685fb3fe8875f0ed8",
     "web/src/components/ConnectedDraft.tsx": "ce3462bdd848d8674b3995e13994a076e39005148932d940c78887e3d18ee0fc"
   }
 }
