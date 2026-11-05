@@ -1,7 +1,7 @@
 {
-  "cliVersion": "0.4.75",
-  "sdkVersion": "0.16.38",
-  "sourceSha": "796a9b2f755ce76f74a2ff0a472c3c5c7cbb01fc",
+  "cliVersion": "0.4.76",
+  "sdkVersion": "0.16.39",
+  "sourceSha": "ec51ae4b865fe6ec1b3f375b61f12c5343758cce",
   "preset": "connected",
   "managedPaths": [
     "pnpm-workspace.yaml",
@@ -35,7 +35,7 @@
   "hashes": {
     "pnpm-workspace.yaml": "e328cb8d5de15bdfb3682dfa5ab2a69f50ad1ead10ada2e3a1ea1f780222f321",
     "package.json": "e4a2591cd9290bf197e0ab356beb4cc219659acfb553b48401624959d43e15ad",
-    "web/package.json": "b27e289013dd849ac180463e37725fad6f5fde9673564ae7ece323ae535e92ce",
+    "web/package.json": "5e678a6c2db8c9d75f8304490d16b255406d253aad9ce57c0e8d01d5a8191ea7",
     "web/vite.config.ts": "bb571bcbc73995c9e73584004dcc78075f410ca681727f7649dc01982b7f38f6",
     "web/tsconfig.json": "2a32142d94e1faa26a839a5fcddb678fe88f18111712e615275fda6202058e61",
     "web/tsconfig.app.json": "f9e9ee8c645fdbebc03639f505d71aab93ab714269e54fb51368f4e7d201bb4d",
@@ -54,9 +54,9 @@
     "web/public/icon.svg": "e4420ba53edfc23d0bf8e0ee6dbca3277ffba258393192285623264afa6c6792",
     "web/pwa-assets.config.ts": "7351f86d23cf0344fed9a0adbd072241cf3321b0e022e6ee564839b8cdfee49e",
     "fas.json": "572d187ae1b3cb07805f2cb43a761109f7a49e1a5aed00d98c0c3f6c112211f6",
-    "web/src/fas-capabilities/pwa.ts": "d5e4422298900822543bb8538e1e7a8371d7cc2de6ba198ec93343517b21a792",
+    "web/src/fas-capabilities/pwa.ts": "41173034f9bbcf819aaf2abae4a682ed3d478446af63f5845a04e55a2d709d30",
     "web/fas-pwa-config.ts": "4ef48e13f7ac7403d29ad08e5edc1868f1a8c2e4af083750eae0a07a705ef493",
-    "fas-capabilities/pwa.md": "cd5ae3917808f6efec5813279a4a44dfd32d4daaf8cd81ab44ae8e51a3f00c51",
+    "fas-capabilities/pwa.md": "987d17a4445e6b3f2cb33f5061970a7c8c31d851a0639350b4f951739a11a61f",
     "fas-capabilities/cloud-data.md": "1c4026e29ff6fc51d60aff1e3e4a247bb4bdc06ade46fff416d88e30466f005a",
     ".github/workflows/deploy.yml": "c715547e671e7f30e35959f4d2251d0b8b9368cda9ea0c7685fb3fe8875f0ed8",
     "web/src/components/ConnectedDraft.tsx": "ce3462bdd848d8674b3995e13994a076e39005148932d940c78887e3d18ee0fc"
