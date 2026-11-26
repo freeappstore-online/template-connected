@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { type ReactNode, useEffect, useState } from "react";
 import { ConnectedDraft } from "./components/ConnectedDraft";
 import { initApp } from "@freeappstore/sdk";
 import { type NavItem, PageHeader, Shell } from "@freeappstore/sdk/ui";
@@ -9,10 +9,11 @@ export const fas = initApp({ appId: "APPID" });
 // The app's screens. Shell renders them as the navbar: a <nav> in its topbar
 // with the current screen highlighted, collapsing to a menu on phones.
 // Add one entry per primary screen; `title` becomes the browser tab title.
-const NAV: NavItem[] = [
-  { label: "Home", href: "/", title: "APPNAME_JS" },
-  { label: "About", href: "/about", title: "About — APPNAME_JS" },
-];
+// About is not a screen: it goes in Shell's `about` (bottom of Profile).
+const NAV: NavItem[] = [{ label: "Home", href: "/", title: "APPNAME_JS" }];
+
+// The component for each NAV href. Unknown paths show Home.
+const SCREENS: Record<string, () => ReactNode> = { "/": Home };
 
 export default function App() {
   const [path, setPath] = useState(() => window.location.pathname);
@@ -31,26 +32,22 @@ export default function App() {
     setPath(window.location.pathname);
   };
 
+  const Screen = SCREENS[path] ?? Home;
+
+  // `about` shows at the bottom of Profile with a link to this app's
+  // FreeAppStore listing. Shell's bottom status bar says "Save to home screen"
+  // in a browser tab and shows this app's address once installed.
   return (
-    <Shell app={fas} appName={"APPNAME_JS"} nav={NAV} onNavigate={navigate}>
+    <Shell app={fas} appName={"APPNAME_JS"} nav={NAV} onNavigate={navigate} about={ABOUT}>
       <div className="mx-auto w-full max-w-3xl p-4 sm:p-8">
-        {path === "/about" ? <About /> : <Home />}
+        <Screen />
       </div>
     </Shell>
   );
 }
 
+const ABOUT = "APPNAME_JS is a free app on FreeAppStore.";
+
 function Home() {
   return <><PageHeader title={"Welcome to APPNAME_JS"} description="Editable app-owned starter screen." /><ConnectedDraft app={fas} /></>;
-}
-
-function About() {
-  return (
-    <>
-      <PageHeader title="About" />
-      <p style={{ color: "var(--muted)" }}>
-        APPNAME_TEXT is a free app on <a href="https://freeappstore.online">FreeAppStore</a>.
-      </p>
-    </>
-  );
 }

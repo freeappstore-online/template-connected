@@ -1,7 +1,7 @@
 {
-  "cliVersion": "0.4.117",
-  "sdkVersion": "0.18.1",
-  "sourceSha": "f359155487dd3c980150c454ca62c5e8762f8157",
+  "cliVersion": "0.4.120",
+  "sdkVersion": "0.21.2",
+  "sourceSha": "d67d3157820c6218db8a86a28737a595ea30079d",
   "preset": "connected",
   "managedPaths": [
     "pnpm-workspace.yaml",
@@ -35,7 +35,7 @@
   "hashes": {
     "pnpm-workspace.yaml": "e328cb8d5de15bdfb3682dfa5ab2a69f50ad1ead10ada2e3a1ea1f780222f321",
     "package.json": "e4a2591cd9290bf197e0ab356beb4cc219659acfb553b48401624959d43e15ad",
-    "web/package.json": "5e678a6c2db8c9d75f8304490d16b255406d253aad9ce57c0e8d01d5a8191ea7",
+    "web/package.json": "c4eeaacd7a91f00d30f45bf4ebc99e95cdaab18c35eb9974f30b75df1d3842d7",
     "web/vite.config.ts": "bb571bcbc73995c9e73584004dcc78075f410ca681727f7649dc01982b7f38f6",
     "web/tsconfig.json": "2a32142d94e1faa26a839a5fcddb678fe88f18111712e615275fda6202058e61",
     "web/tsconfig.app.json": "f9e9ee8c645fdbebc03639f505d71aab93ab714269e54fb51368f4e7d201bb4d",
@@ -47,8 +47,8 @@
     "web/src/vite-env.d.ts": "65996936fbb042915f7b74a200fcdde7e410f32a669b1ab9597cfaa4b0faddb5",
     "web/index.html": "b1135ca954733c4e581e126adaeacd11cea14d8bbba00dbea52d5678868cba8d",
     "web/public/manifest.json": "cc051884965ea68433fdd6d9a6360997aa9af24f3d95d2f2d5bf26354976015d",
-    "web/src/index.css": "2098284dde27e24d977c52a1482c87649bdbe9eb8438b6686ff1a71a77522a33",
-    "web/src/App.tsx": "0f7950aabf8be257d3affcaa4599cc78a24c4a832061509988bc0d3b7cc69eff",
+    "web/src/index.css": "6e373f814ecc9dc55ecca3f5059e4d62f36349000d80026fa6bec24dae927567",
+    "web/src/App.tsx": "40228ad50f4b3ec68aa62d39f54ba86504f4c3e34880352d62aa04b343edb2a1",
     "LICENSE": "4356c15a505fb89e73f8f7464c6035780750c67d78f0ad8c03adada10fab2708",
     "web/src/pwa.ts": "ac0d6e5384eee24333b7f72af73897fdd80ab57532e093f25e8cc20053e3cf15",
     "web/public/icon.svg": "e4420ba53edfc23d0bf8e0ee6dbca3277ffba258393192285623264afa6c6792",
